@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Timers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ATs-59-YFZ">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Timer" id="b0M-sg-0QM" customClass="TimerCell" customModule="TimerKit">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b0M-sg-0QM" id="vMQ-6v-chW">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="86400" stepValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="3Il-hY-J1G">
+                                                    <rect key="frame" x="498" y="16" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="durationStepperValueChanged:" destination="b0M-sg-0QM" eventType="valueChanged" id="XTC-ee-IZt"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 mins" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGk-DL-fae">
+                                                    <rect key="frame" x="275" y="19" width="51" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5A-U7-VOm">
+                                                    <rect key="frame" x="20" y="15" width="33" height="30"/>
+                                                    <state key="normal" title="Start">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="startOrStop:" destination="b0M-sg-0QM" eventType="touchUpInside" id="KDO-Uy-PYu"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="h5A-U7-VOm" secondAttribute="centerY" id="BLN-nu-erb"/>
+                                                <constraint firstAttribute="centerY" secondItem="FGk-DL-fae" secondAttribute="centerY" id="C2B-PC-uJy"/>
+                                                <constraint firstItem="h5A-U7-VOm" firstAttribute="leading" secondItem="vMQ-6v-chW" secondAttribute="leading" constant="20" id="Dj5-Xn-upZ"/>
+                                                <constraint firstAttribute="centerY" secondItem="3Il-hY-J1G" secondAttribute="centerY" id="WzY-Eo-AQc"/>
+                                                <constraint firstAttribute="centerX" secondItem="FGk-DL-fae" secondAttribute="centerX" id="bcs-NL-3CL"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3Il-hY-J1G" secondAttribute="trailing" id="mtP-Rq-8au"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="durationLabel" destination="FGk-DL-fae" id="oSE-mS-VUu"/>
+                                            <outlet property="durationStepper" destination="3Il-hY-J1G" id="GBO-T4-Kxt"/>
+                                            <outlet property="startStopButton" destination="h5A-U7-VOm" id="9ms-GL-bwa"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="B67-SB-KQZ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Jj8-UZ-0kt"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ATs-59-YFZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="d7s-KM-rD2"/>
+                            <constraint firstAttribute="trailing" secondItem="ATs-59-YFZ" secondAttribute="trailing" id="n1I-GE-lP7"/>
+                            <constraint firstItem="ATs-59-YFZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sjc-9u-2qK"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ATs-59-YFZ" secondAttribute="bottom" id="wx1-hz-1Le"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ATs-59-YFZ" id="Dtu-n3-brJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
