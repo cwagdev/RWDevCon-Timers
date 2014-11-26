@@ -88,3 +88,9 @@ public class TimerCell: UITableViewCell {
     durationLabel.text = durationFormatter.stringFromDateComponents(dateComponents)
   }
 }
+
+public class AddTimerCell: UITableViewCell {
+    
+    @IBOutlet public weak var addTimerLabel: UILabel!
+    
+}

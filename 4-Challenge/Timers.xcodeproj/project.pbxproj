@@ -95,6 +95,8 @@
 		07EDE1831A25477C0087CD9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07EDE1841A25477C0087CD9E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		07EDE1861A25477C0087CD9E /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		07EDE18F1A254A3A0087CD9E /* Timer Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Timer Widget.entitlements"; sourceTree = "<group>"; };
+		07EDE1901A254A7F0087CD9E /* Timers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Timers.entitlements; sourceTree = "<group>"; };
 		8311AFA81A1F0811007E4450 /* Timers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8311AFAC1A1F0811007E4450 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8311AFAD1A1F0811007E4450 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		07EDE1811A25477C0087CD9E /* Timer Widget */ = {
 			isa = PBXGroup;
 			children = (
+				07EDE18F1A254A3A0087CD9E /* Timer Widget.entitlements */,
 				07EDE1841A25477C0087CD9E /* TodayViewController.swift */,
 				07EDE1861A25477C0087CD9E /* MainInterface.storyboard */,
 				07EDE1821A25477C0087CD9E /* Supporting Files */,
@@ -211,6 +214,7 @@
 		8311AFAA1A1F0811007E4450 /* Timers */ = {
 			isa = PBXGroup;
 			children = (
+				07EDE1901A254A7F0087CD9E /* Timers.entitlements */,
 				8311AFAD1A1F0811007E4450 /* AppDelegate.swift */,
 				8311AFD41A243AB1007E4450 /* Controllers */,
 				8311AFB11A1F0811007E4450 /* Main.storyboard */,
@@ -409,10 +413,20 @@
 					07EDE17C1A25477C0087CD9E = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = X28LAA5D4H;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					8311AFA71A1F0811007E4450 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = X28LAA5D4H;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					8311AFBC1A1F0812007E4450 = {
 						CreatedOnToolsVersion = 6.1;
@@ -588,7 +602,9 @@
 		07EDE18B1A25477C0087CD9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Timer Widget/Timer Widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -597,6 +613,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -604,11 +621,14 @@
 		07EDE18C1A25477C0087CD9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Timer Widget/Timer Widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Timer Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -696,11 +716,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Timers/Timers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Timers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -708,11 +731,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Timers/Timers.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Timers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -839,6 +865,7 @@
 				07EDE18C1A25477C0087CD9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8311AFA31A1F0811007E4450 /* Build configuration list for PBXProject "Timers" */ = {
 			isa = XCConfigurationList;

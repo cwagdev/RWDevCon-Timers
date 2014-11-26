@@ -8,10 +8,22 @@
 
 import UIKit
 
+private let AppGroupName = "group.com.raywenderlich.timers"
+private let TimersUserDefaultsKey = "TimersUserDefaultsKey"
 private let _sharedManager = TimerManager()
+
 public class TimerManager {
   
-  public private(set) var timers = [Timer]()
+  
+  lazy public private(set) var timers: [Timer] = {
+    let defaults = NSUserDefaults(suiteName: AppGroupName)
+    if let timers = defaults?.arrayForKey(TimersUserDefaultsKey) as? [Timer] {
+      return timers
+    } else {
+      return [Timer]()
+    }
+  }()
+  
   private var runLoopTimer: NSTimer!
   
   private init() {
