@@ -14,7 +14,6 @@ private let _sharedManager = TimerManager()
 
 public class TimerManager {
   
-  
   lazy public private(set) var timers: [Timer] = {
     let defaults = NSUserDefaults(suiteName: AppGroupName)
     if let timers = defaults?.arrayForKey(TimersUserDefaultsKey) as? [Timer] {
@@ -49,6 +48,7 @@ public class TimerManager {
 
 public class Timer: NSObject, NSCoding {
   
+  public let uuid = NSUUID().UUIDString
   public var duration: Double {
     willSet {
       elapsed = 0
@@ -68,10 +68,12 @@ public class Timer: NSObject, NSCoding {
   }
   
   required public init(coder aDecoder: NSCoder) {
+    self.uuid = aDecoder.decodeObjectForKey("uuid") as String
     self.duration = aDecoder.decodeDoubleForKey("duration")
   }
   
   public func encodeWithCoder(aCoder: NSCoder) {
+    aCoder.encodeObject(uuid, forKey: "uuid")
     aCoder.encodeDouble(duration, forKey: "duration")
   }
   

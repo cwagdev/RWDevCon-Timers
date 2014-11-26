@@ -9,11 +9,19 @@
 import UIKit
 import TimerKit
 
+public protocol TimerCellDelegate {
+  func timerCellDidStartTimer(timer: Timer)
+  func timerCellDidStopTimer(timer: Timer)
+  func timerCellDidFinishTimer(timer: Timer)
+}
+
 public class TimerCell: UITableViewCell {
   
   @IBOutlet weak var durationStepper: UIStepper!
   @IBOutlet weak var durationLabel: UILabel!
   @IBOutlet weak var startStopButton: UIButton!
+  
+  public var delegate: TimerCellDelegate?
   
   public var timer: Timer {
     didSet {
@@ -42,6 +50,7 @@ public class TimerCell: UITableViewCell {
       self.startStopButton.setTitle(NSLocalizedString("Start", comment: "Start timer button"), forState: .Normal)
       self.durationStepper.hidden = false
       self.durationStepper.value = 0
+      self.delegate?.timerCellDidFinishTimer(timer)
     }
   }
   
@@ -73,9 +82,11 @@ public class TimerCell: UITableViewCell {
       button.setTitle(NSLocalizedString("Start", comment: "Start timer button"), forState: .Normal)
       timer.stop()
       durationStepper.hidden = false
+      delegate?.timerCellDidStopTimer(timer)
     } else {
       durationStepper.hidden = true
       timer.start()
+      delegate?.timerCellDidStartTimer(timer)
       button.setTitle(NSLocalizedString("Stop", comment: "Stop timer button"), forState: .Normal)
     }
   }

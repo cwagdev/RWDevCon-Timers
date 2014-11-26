@@ -17,6 +17,7 @@
 		8311AFB51A1F0811007E4450 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8311AFB41A1F0811007E4450 /* Images.xcassets */; };
 		8311AFB81A1F0811007E4450 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8311AFB61A1F0811007E4450 /* LaunchScreen.xib */; };
 		8311AFC41A1F0812007E4450 /* TimersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8311AFC31A1F0812007E4450 /* TimersTests.swift */; };
+		83722B891A25856200027968 /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83722B881A25856200027968 /* LocalNotificationHelper.swift */; };
 		8398C7EA1A2461A80099B689 /* TimerKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8398C7E91A2461A80099B689 /* TimerKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8398C7F01A2461A80099B689 /* TimerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8398C7E51A2461A80099B689 /* TimerKit.framework */; };
 		8398C7F91A2461A80099B689 /* TimerKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398C7F81A2461A80099B689 /* TimerKitTests.swift */; };
@@ -107,6 +108,7 @@
 		8311AFBD1A1F0812007E4450 /* TimersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8311AFC21A1F0812007E4450 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8311AFC31A1F0812007E4450 /* TimersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersTests.swift; sourceTree = "<group>"; };
+		83722B881A25856200027968 /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
 		8398C7E51A2461A80099B689 /* TimerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TimerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8398C7E81A2461A80099B689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8398C7E91A2461A80099B689 /* TimerKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerKit.h; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				8311AFB41A1F0811007E4450 /* Images.xcassets */,
 				8311AFB61A1F0811007E4450 /* LaunchScreen.xib */,
 				8311AFAB1A1F0811007E4450 /* Supporting Files */,
+				83722B881A25856200027968 /* LocalNotificationHelper.swift */,
 			);
 			path = Timers;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83722B891A25856200027968 /* LocalNotificationHelper.swift in Sources */,
 				8311AFB01A1F0811007E4450 /* ViewController.swift in Sources */,
 				8311AFAE1A1F0811007E4450 /* AppDelegate.swift in Sources */,
 			);

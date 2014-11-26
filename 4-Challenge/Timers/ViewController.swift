@@ -32,7 +32,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     if lastRow(indexPath.row, numberOfRows: numberOfRows) == true {
       cell = tableView.dequeueReusableCellWithIdentifier("AddTimer", forIndexPath: indexPath) as AddTimerCell
     } else {
-      cell = tableView.dequeueReusableCellWithIdentifier("Timer", forIndexPath: indexPath) as TimerCell
+      let timerCell = tableView.dequeueReusableCellWithIdentifier("Timer", forIndexPath: indexPath) as TimerCell
+      timerCell.delegate = self
+      cell = timerCell
     }
     
     return cell!
@@ -55,5 +57,22 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     } else {
       return true
     }
+  }
+}
+
+extension ViewController: TimerCellDelegate {
+  
+  func timerCellDidStartTimer(timer: Timer) {
+    println("Did start timer " + timer.uuid)
+    LocalNotificationHelper.scheduleNotification(forTimer: timer)
+  }
+  
+  func timerCellDidStopTimer(timer: Timer) {
+    println("Did stop timer " + timer.uuid)
+    LocalNotificationHelper.cancelNotification(forTimer: timer)
+  }
+  
+  func timerCellDidFinishTimer(timer: Timer) {
+    println("Did finish timer " + timer.uuid)
   }
 }
