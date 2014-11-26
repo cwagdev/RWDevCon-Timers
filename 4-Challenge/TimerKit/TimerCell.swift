@@ -64,8 +64,7 @@ public class TimerCell: UITableViewCell {
     updateDurationLabel()
   }
   
-  @IBAction public func durationStepperValueChanged(stepper: UIStepper) {
-    
+  @IBAction public func durationStepperValueChanged(stepper: UIStepper) {    
     if timer?.inProgress != true {
       timer?.duration = stepper.value
       updateDurationLabel()
