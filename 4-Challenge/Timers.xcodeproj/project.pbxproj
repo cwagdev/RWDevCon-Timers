@@ -218,14 +218,14 @@
 		8311AFAA1A1F0811007E4450 /* Timers */ = {
 			isa = PBXGroup;
 			children = (
-				07EDE1901A254A7F0087CD9E /* Timers.entitlements */,
 				8311AFAD1A1F0811007E4450 /* AppDelegate.swift */,
 				8311AFD41A243AB1007E4450 /* Controllers */,
-				8311AFB11A1F0811007E4450 /* Main.storyboard */,
 				8311AFB41A1F0811007E4450 /* Images.xcassets */,
 				8311AFB61A1F0811007E4450 /* LaunchScreen.xib */,
-				8311AFAB1A1F0811007E4450 /* Supporting Files */,
 				83722B881A25856200027968 /* LocalNotificationHelper.swift */,
+				8311AFB11A1F0811007E4450 /* Main.storyboard */,
+				8311AFAB1A1F0811007E4450 /* Supporting Files */,
+				07EDE1901A254A7F0087CD9E /* Timers.entitlements */,
 			);
 			path = Timers;
 			sourceTree = "<group>";
@@ -266,11 +266,11 @@
 		8398C7E61A2461A80099B689 /* TimerKit */ = {
 			isa = PBXGroup;
 			children = (
-				8398C7E91A2461A80099B689 /* TimerKit.h */,
 				8398C7E71A2461A80099B689 /* Supporting Files */,
-				8398C8051A24643A0099B689 /* TimerManager.swift */,
 				07782D3F1A26638D00DF58A8 /* Timer.swift */,
 				8398C8071A2470A90099B689 /* TimerCell.swift */,
+				8398C7E91A2461A80099B689 /* TimerKit.h */,
+				8398C8051A24643A0099B689 /* TimerManager.swift */,
 			);
 			path = TimerKit;
 			sourceTree = "<group>";
