@@ -860,6 +860,7 @@
 				0736715B1A266EB10098D10A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8311AFA31A1F0811007E4450 /* Build configuration list for PBXProject "Timers" */ = {
 			isa = XCConfigurationList;

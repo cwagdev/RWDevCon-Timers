@@ -109,6 +109,7 @@ extension TodayViewController: TimerCellDelegate {
   
   func timerCellDidStartTimer(timer: Timer) {
     println("Did start timer " + timer.uuid)
+//    extensionContext?.openURL(<#URL: NSURL#>, completionHandler: <#((Bool) -> Void)?##(Bool) -> Void#>)
 //    LocalNotificationHelper.scheduleNotification(forTimer: timer)
   }
   
