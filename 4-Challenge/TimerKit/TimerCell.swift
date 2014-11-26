@@ -23,9 +23,9 @@ public class TimerCell: UITableViewCell {
   
   public var delegate: TimerCellDelegate?
   
-  public var timer: Timer {
+  public var timer: Timer? {
     didSet {
-      timer.tickBlock = tickBlock
+      timer?.tickBlock = tickBlock
     }
   }
   
@@ -55,13 +55,8 @@ public class TimerCell: UITableViewCell {
   }
   
   public required init(coder aDecoder: NSCoder) {
-    timer = Timer(duration: 0)
-    
     super.init(coder: aDecoder)
-    
-    timer.tickBlock = tickBlock
-    
-    TimerManager.sharedManager.addTimer(timer)
+    timer?.tickBlock = tickBlock
   }
   
   public override func awakeFromNib() {
@@ -71,32 +66,37 @@ public class TimerCell: UITableViewCell {
   
   @IBAction public func durationStepperValueChanged(stepper: UIStepper) {
     
-    if timer.inProgress != true {
-      timer.duration = stepper.value
+    if timer?.inProgress != true {
+      timer?.duration = stepper.value
       updateDurationLabel()
     }
   }
   
   @IBAction public func startOrStop(button: UIButton) {
-    if timer.inProgress == true {
-      button.setTitle(NSLocalizedString("Start", comment: "Start timer button"), forState: .Normal)
-      timer.stop()
-      durationStepper.hidden = false
-      delegate?.timerCellDidStopTimer(timer)
-    } else {
-      durationStepper.hidden = true
-      timer.start()
-      delegate?.timerCellDidStartTimer(timer)
-      button.setTitle(NSLocalizedString("Stop", comment: "Stop timer button"), forState: .Normal)
+    if let timer = timer {
+      if timer.inProgress == true {
+        button.setTitle(NSLocalizedString("Start", comment: "Start timer button"), forState: .Normal)
+        timer.stop()
+        durationStepper.hidden = false
+        delegate?.timerCellDidStopTimer(timer)
+      } else {
+        durationStepper.hidden = true
+        timer.start()
+        delegate?.timerCellDidStartTimer(timer)
+        button.setTitle(NSLocalizedString("Stop", comment: "Stop timer button"), forState: .Normal)
+      }
     }
   }
   
   private func updateDurationLabel() {
-    let hourAndMinutes = timer.durationInHoursAndMinutes()
-    dateComponents.hour = hourAndMinutes.hours
-    dateComponents.minute = hourAndMinutes.minutes
-    
-    durationLabel.text = durationFormatter.stringFromDateComponents(dateComponents)
+    if let let hourAndMinutes = timer?.durationInHoursAndMinutes() {
+      dateComponents.hour = hourAndMinutes.hours
+      dateComponents.minute = hourAndMinutes.minutes
+      
+      durationLabel.text = durationFormatter.stringFromDateComponents(dateComponents)
+    } else {
+      durationLabel.text = NSLocalizedString("0 min", comment: "New Timer Duration String")
+    }
   }
 }
 

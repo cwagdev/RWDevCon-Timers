@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07782D401A26638D00DF58A8 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07782D3F1A26638D00DF58A8 /* Timer.swift */; };
 		07EDE1801A25477C0087CD9E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EDE17F1A25477C0087CD9E /* NotificationCenter.framework */; };
 		07EDE1851A25477C0087CD9E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EDE1841A25477C0087CD9E /* TodayViewController.swift */; };
 		07EDE1871A25477C0087CD9E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EDE1861A25477C0087CD9E /* MainInterface.storyboard */; };
@@ -91,6 +92,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07782D3F1A26638D00DF58A8 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		07EDE17D1A25477C0087CD9E /* Timer Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Timer Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EDE17F1A25477C0087CD9E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		07EDE1831A25477C0087CD9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				8398C7E91A2461A80099B689 /* TimerKit.h */,
 				8398C7E71A2461A80099B689 /* Supporting Files */,
 				8398C8051A24643A0099B689 /* TimerManager.swift */,
+				07782D3F1A26638D00DF58A8 /* Timer.swift */,
 				8398C8071A2470A90099B689 /* TimerCell.swift */,
 			);
 			path = TimerKit;
@@ -540,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07782D401A26638D00DF58A8 /* Timer.swift in Sources */,
 				8398C8061A24643A0099B689 /* TimerManager.swift in Sources */,
 				8398C8081A2470A90099B689 /* TimerCell.swift in Sources */,
 			);

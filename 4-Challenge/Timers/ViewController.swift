@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return TimerManager.sharedManager.timers.count + 5
+    return TimerManager.sharedManager.timers.count + 1
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -34,6 +34,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     } else {
       let timerCell = tableView.dequeueReusableCellWithIdentifier("Timer", forIndexPath: indexPath) as TimerCell
       timerCell.delegate = self
+      timerCell.timer = TimerManager.sharedManager.timers[indexPath.row]
       cell = timerCell
     }
     
@@ -43,12 +44,35 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     if lastRow(indexPath.row, numberOfRows: tableView.numberOfRowsInSection(indexPath.section)) == true {
-      println("Add a timer")
+      tableView.beginUpdates()
+      tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Bottom)
+      TimerManager.sharedManager.addTimer(Timer(duration: 0))
+      tableView.endUpdates()
     }
   }
   
   func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
     return lastRow(indexPath.row, numberOfRows: tableView.numberOfRowsInSection(indexPath.section))
+  }
+  
+  func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    if !lastRow(indexPath.row, numberOfRows: tableView.numberOfRowsInSection(indexPath.section)) {
+      return true
+    } else {
+      return false
+    }
+  }
+  
+  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    if editingStyle == .Delete {
+      let timerCell = tableView.cellForRowAtIndexPath(indexPath) as TimerCell
+      if let timer = timerCell.timer {
+        TimerManager.sharedManager.removeTimer(timer)
+        tableView.beginUpdates()
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+        tableView.endUpdates()
+      }
+    }
   }
   
   func lastRow(row: Int, numberOfRows: Int) -> Bool {
