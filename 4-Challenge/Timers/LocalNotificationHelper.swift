@@ -14,7 +14,7 @@ class LocalNotificationHelper {
   class func scheduleNotification(forTimer timer: Timer) -> UILocalNotification {
     let notification = UILocalNotification()
     notification.fireDate = NSDate(timeIntervalSinceNow: timer.duration - timer.elapsed)
-    notification.alertBody = ""
+    notification.alertBody = "Time's up!"
     notification.soundName = UILocalNotificationDefaultSoundName
     notification.applicationIconBadgeNumber += 1
     notification.userInfo = ["timerUUID": timer.uuid]

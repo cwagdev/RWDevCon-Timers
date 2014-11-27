@@ -217,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				8311AFAD1A1F0811007E4450 /* AppDelegate.swift */,
-				8311AFD41A243AB1007E4450 /* Controllers */,
+				8311AFAF1A1F0811007E4450 /* ViewController.swift */,
 				8311AFB41A1F0811007E4450 /* Images.xcassets */,
 				8311AFB61A1F0811007E4450 /* LaunchScreen.xib */,
 				83722B881A25856200027968 /* LocalNotificationHelper.swift */,
@@ -251,14 +251,6 @@
 				8311AFC21A1F0812007E4450 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8311AFD41A243AB1007E4450 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				8311AFAF1A1F0811007E4450 /* ViewController.swift */,
-			);
-			name = Controllers;
 			sourceTree = "<group>";
 		};
 		8398C7E61A2461A80099B689 /* TimerKit */ = {

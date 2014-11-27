@@ -25,7 +25,14 @@ public class TimerCell: UITableViewCell {
   
   public var timer: Timer? {
     didSet {
-      timer?.tickBlock = tickBlock
+      if let timer = timer {
+        timer.tickBlock = tickBlock
+        updateDurationLabel()
+        if timer.inProgress == true {
+          startStopButton.setTitle(NSLocalizedString("Stop", comment: "Stop timer button"), forState: .Normal)
+          durationStepper.hidden = true
+        }
+      }
     }
   }
   
@@ -88,7 +95,7 @@ public class TimerCell: UITableViewCell {
   }
   
   private func updateDurationLabel() {
-    if let let hourAndMinutes = timer?.durationInHoursAndMinutes() {
+    if let let hourAndMinutes = timer?.remainingDurationInHoursAndMinutes() {
       dateComponents.hour = hourAndMinutes.hours
       dateComponents.minute = hourAndMinutes.minutes
       

@@ -15,15 +15,18 @@ private let _sharedManager = TimerManager()
 public class TimerManager {
   
   lazy public private(set) var timers: [Timer] = {
+    var timers = [Timer]()
     let defaults = NSUserDefaults(suiteName: AppGroupName)
-    if let timers = defaults?.arrayForKey(TimersUserDefaultsKey) as? [Timer] {
-      return timers
-    } else {
-      return [Timer]()
+    if let timersData = defaults?.dataForKey(TimersUserDefaultsKey) {
+      if let unarchivedTimers = NSKeyedUnarchiver.unarchiveObjectWithData(timersData) as? [Timer] {
+        timers = unarchivedTimers
+      }
     }
+    return timers
   }()
   
   private var runLoopTimer: NSTimer!
+  private var tickCount = 0
   
   private init() {
     self.runLoopTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "tickAllTimers:", userInfo: nil, repeats: true)
@@ -35,11 +38,13 @@ public class TimerManager {
   
   public func addTimer(timer: Timer) {
     timers.append(timer)
+    persistTimers()
   }
   
   public func removeTimer(timer: Timer) {
     if let timerIndex = find(timers, timer) {
       timers.removeAtIndex(timerIndex)
+      persistTimers()
     }
   }
   
@@ -49,5 +54,17 @@ public class TimerManager {
         timer.tick()
       }
     }
+    if tickCount % 5 == 0 {
+      // persist timers every 5 seconds
+      persistTimers()
+    }
+    
+    tickCount++
+  }
+  
+  private func persistTimers() {
+    let defaults = NSUserDefaults(suiteName: AppGroupName)
+    let timersData = NSKeyedArchiver.archivedDataWithRootObject(timers)
+    defaults?.setObject(timersData, forKey: TimersUserDefaultsKey)
   }
 }
