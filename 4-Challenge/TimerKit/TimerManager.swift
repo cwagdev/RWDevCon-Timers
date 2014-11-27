@@ -38,7 +38,9 @@ public class TimerManager {
   }
   
   public func removeTimer(timer: Timer) {
-    timers = timers.filter { $0 != timer }
+    if let timerIndex = find(timers, timer) {
+      timers.removeAtIndex(timerIndex)
+    }
   }
   
   @objc public func tickAllTimers(timer: NSTimer) {
