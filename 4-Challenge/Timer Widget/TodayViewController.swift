@@ -41,81 +41,38 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 extension TodayViewController: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    let numberOfRows = TimerManager.sharedManager.timers.count + 1
-    preferredContentSize = CGSize(width: CGRectGetWidth(tableView.frame), height: CGFloat(numberOfRows * 60))
-    return numberOfRows
+    return 1
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell: UITableViewCell?
+    preferredContentSize = CGSize(width: CGRectGetWidth(tableView.frame), height: 60.0)
     
-    let numberOfRows = tableView.numberOfRowsInSection(indexPath.section)
-    if lastRow(indexPath.row, numberOfRows: numberOfRows) == true {
-      cell = tableView.dequeueReusableCellWithIdentifier("AddTimer", forIndexPath: indexPath) as AddTimerCell
-    } else {
-      let timerCell = tableView.dequeueReusableCellWithIdentifier("Timer", forIndexPath: indexPath) as TimerCell
-      timerCell.delegate = self
-      timerCell.timer = TimerManager.sharedManager.timers[indexPath.row]
-      cell = timerCell
-    }
+    let timerCell = tableView.dequeueReusableCellWithIdentifier("Timer", forIndexPath: indexPath) as TimerCell
+    timerCell.delegate = self
+    timerCell.timer = Timer(duration: 0)
     
-    return cell!
-  }
-  
-  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    if lastRow(indexPath.row, numberOfRows: tableView.numberOfRowsInSection(indexPath.section)) == true {
-      tableView.beginUpdates()
-      tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Bottom)
-      TimerManager.sharedManager.addTimer(Timer(duration: 0))
-      tableView.endUpdates()
-    }
+    return timerCell
   }
   
   func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return lastRow(indexPath.row, numberOfRows: tableView.numberOfRowsInSection(indexPath.section))
-  }
-  
-  func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    if !lastRow(indexPath.row, numberOfRows: tableView.numberOfRowsInSection(indexPath.section)) {
-      return true
-    } else {
-      return false
-    }
-  }
-  
-  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-      let timerCell = tableView.cellForRowAtIndexPath(indexPath) as TimerCell
-      if let timer = timerCell.timer {
-        TimerManager.sharedManager.removeTimer(timer)
-        tableView.beginUpdates()
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
-        tableView.endUpdates()
-      }
-    }
-  }
-  
-  func lastRow(row: Int, numberOfRows: Int) -> Bool {
-    if row < numberOfRows-1 {
-      return false
-    } else {
-      return true
-    }
+    return false
   }
 }
 
 extension TodayViewController: TimerCellDelegate {
   
   func timerCellDidStartTimer(timer: Timer) {
+    TimerManager.sharedManager.addTimer(timer)
     println("Did start timer " + timer.uuid)
-//    extensionContext?.openURL(<#URL: NSURL#>, completionHandler: <#((Bool) -> Void)?##(Bool) -> Void#>)
-//    LocalNotificationHelper.scheduleNotification(forTimer: timer)
+    if let url = NSURL(string: "timers://start/\(timer.uuid)") {
+      extensionContext?.openURL(url, completionHandler: { (handled) -> Void in
+        
+      })
+    }
   }
   
   func timerCellDidStopTimer(timer: Timer) {
     println("Did stop timer " + timer.uuid)
-//    LocalNotificationHelper.cancelNotification(forTimer: timer)
   }
   
   func timerCellDidFinishTimer(timer: Timer) {

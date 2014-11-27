@@ -48,6 +48,16 @@ public class TimerManager {
     }
   }
   
+  public func timer(forUUID uuid: String) -> Timer? {
+    for timer in timers {
+      if timer.uuid == uuid {
+        return timer
+      }
+    }
+    
+    return nil
+  }
+  
   @objc public func tickAllTimers(timer: NSTimer) {
     for timer in timers {
       if timer.inProgress == true {
