@@ -36,19 +36,6 @@ public class TimerCell: UITableViewCell {
     }
   }
   
-  private let durationFormatter: NSDateComponentsFormatter = {
-    let formatter = NSDateComponentsFormatter()
-    formatter.unitsStyle = .Short
-    return formatter
-    }()
-  
-  private let dateComponents: NSDateComponents = {
-    let components = NSDateComponents()
-    components.minute = 0
-    
-    return components
-    }()
-  
   lazy private var tickBlock: (Timer -> Void) = { timer in
     println("Remaining: \(timer.duration - timer.elapsed)")
     self.updateDurationLabel()
@@ -95,14 +82,7 @@ public class TimerCell: UITableViewCell {
   }
   
   private func updateDurationLabel() {
-    if let let hourAndMinutes = timer?.remainingDurationInHoursAndMinutes() {
-      dateComponents.hour = hourAndMinutes.hours
-      dateComponents.minute = hourAndMinutes.minutes
-      
-      durationLabel.text = durationFormatter.stringFromDateComponents(dateComponents)
-    } else {
-      durationLabel.text = NSLocalizedString("0 min", comment: "New Timer Duration String")
-    }
+    durationLabel.text = timer?.remainingDuration()
   }
 }
 

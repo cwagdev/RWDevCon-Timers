@@ -15,14 +15,7 @@ private let _sharedManager = TimerManager()
 public class TimerManager {
   
   lazy public private(set) var timers: [Timer] = {
-    var timers = [Timer]()
-    let defaults = NSUserDefaults(suiteName: AppGroupName)
-    if let timersData = defaults?.dataForKey(TimersUserDefaultsKey) {
-      if let unarchivedTimers = NSKeyedUnarchiver.unarchiveObjectWithData(timersData) as? [Timer] {
-        timers = unarchivedTimers
-      }
-    }
-    return timers
+    return self.loadPersistedTimers()
   }()
   
   private var runLoopTimer: NSTimer!
@@ -72,7 +65,19 @@ public class TimerManager {
     tickCount++
   }
   
-  private func persistTimers() {
+  public func loadPersistedTimers() -> [Timer] {
+    var timers = [Timer]()
+    let defaults = NSUserDefaults(suiteName: AppGroupName)
+    if let timersData = defaults?.dataForKey(TimersUserDefaultsKey) {
+      if let unarchivedTimers = NSKeyedUnarchiver.unarchiveObjectWithData(timersData) as? [Timer] {
+        timers = unarchivedTimers
+      }
+    }
+    
+    return timers
+  }
+  
+  public func persistTimers() {
     let defaults = NSUserDefaults(suiteName: AppGroupName)
     let timersData = NSKeyedArchiver.archivedDataWithRootObject(timers)
     defaults?.setObject(timersData, forKey: TimersUserDefaultsKey)

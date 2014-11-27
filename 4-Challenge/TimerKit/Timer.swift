@@ -28,10 +28,22 @@ public class Timer: NSObject, NSCoding, Equatable {
   
   public var tickBlock: (Timer -> Void)?
   private var startDate: NSDate?
+  private let dateComponents: NSDateComponents = {
+    let components = NSDateComponents()
+    components.minute = 0
+    
+    return components
+    }()
   
   public init(duration: Double) {
     self.duration = duration
   }
+  
+  private let durationFormatter: NSDateComponentsFormatter = {
+    let formatter = NSDateComponentsFormatter()
+    formatter.unitsStyle = .Short
+    return formatter
+    }()
   
   required public init(coder aDecoder: NSCoder) {
     self.uuid = aDecoder.decodeObjectForKey("uuid") as String
@@ -73,6 +85,18 @@ public class Timer: NSObject, NSCoding, Equatable {
     let minutes = (Int(duration-elapsed) - (hours * 60 * 60)) / 60
     
     return (hours, minutes)
+  }
+  
+  public func remainingDuration() -> String {
+    let hourAndMinutes = remainingDurationInHoursAndMinutes()
+    dateComponents.hour = hourAndMinutes.hours
+    dateComponents.minute = hourAndMinutes.minutes
+    
+    if let durationString = durationFormatter.stringFromDateComponents(dateComponents) {
+      return durationString
+    } else {
+      return NSLocalizedString("0 min", comment: "New Timer Duration String")
+    }
   }
 }
 

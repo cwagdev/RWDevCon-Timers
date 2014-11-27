@@ -109,6 +109,7 @@
 		8311AFBD1A1F0812007E4450 /* TimersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8311AFC21A1F0812007E4450 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8311AFC31A1F0812007E4450 /* TimersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersTests.swift; sourceTree = "<group>"; };
+		8367A57A1A27699100315E4B /* Timer Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Timer Widget.entitlements"; sourceTree = "<group>"; };
 		83722B881A25856200027968 /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
 		8398C7E51A2461A80099B689 /* TimerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TimerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8398C7E81A2461A80099B689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		0736714F1A266EB00098D10A /* Timer Widget */ = {
 			isa = PBXGroup;
 			children = (
+				8367A57A1A27699100315E4B /* Timer Widget.entitlements */,
 				073671521A266EB00098D10A /* TodayViewController.swift */,
 				073671541A266EB00098D10A /* MainInterface.storyboard */,
 				073671501A266EB00098D10A /* Supporting Files */,
@@ -409,6 +411,11 @@
 					0736714C1A266EB00098D10A = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = X28LAA5D4H;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					8311AFA71A1F0811007E4450 = {
 						CreatedOnToolsVersion = 6.1;
@@ -595,6 +602,7 @@
 		0736715A1A266EB10098D10A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Timer Widget/Timer Widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -611,6 +619,7 @@
 		0736715B1A266EB10098D10A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Timer Widget/Timer Widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Timer Widget/Info.plist";
