@@ -37,7 +37,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   }
   
   func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-    return UIEdgeInsetsZero
+    return UIEdgeInsetsMake(0, 16, 0, 16)
   }
   
   @IBAction func start(sender: UIButton) {

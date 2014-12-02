@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
@@ -26,26 +25,26 @@
                                     <action selector="start:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="FeZ-X3-O4V"/>
                                 </connections>
                             </button>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="86400" stepValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="aio-cP-HdE">
-                                <rect key="frame" x="210" y="16" width="94" height="29"/>
-                                <connections>
-                                    <action selector="stepperValueChanged:" destination="M4Y-Lb-cyx" eventType="valueChanged" id="ZDA-Mz-X2I"/>
-                                </connections>
-                            </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyL-xx-fj4">
                                 <rect key="frame" x="138" y="20" width="43" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.047058823530000002" green="0.37254901959999998" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="86400" stepValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="aio-cP-HdE">
+                                <rect key="frame" x="210" y="16" width="94" height="29"/>
+                                <connections>
+                                    <action selector="stepperValueChanged:" destination="M4Y-Lb-cyx" eventType="valueChanged" id="ZDA-Mz-X2I"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="aio-cP-HdE" secondAttribute="centerY" id="9u0-pe-XtA"/>
                             <constraint firstAttribute="centerY" secondItem="Ol2-No-Pkj" secondAttribute="centerY" id="C0q-5N-ktg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aio-cP-HdE" secondAttribute="trailing" id="Kz1-wf-mLn"/>
                             <constraint firstAttribute="centerX" secondItem="nyL-xx-fj4" secondAttribute="centerX" id="Ljw-TU-bVJ"/>
-                            <constraint firstItem="Ol2-No-Pkj" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" id="eKW-pK-hx3"/>
+                            <constraint firstAttribute="centerY" secondItem="aio-cP-HdE" secondAttribute="centerY" id="SBd-yk-6PQ"/>
+                            <constraint firstItem="Ol2-No-Pkj" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="16" id="eKW-pK-hx3"/>
                             <constraint firstAttribute="centerY" secondItem="nyL-xx-fj4" secondAttribute="centerY" id="fnh-Rp-0cF"/>
+                            <constraint firstAttribute="trailing" secondItem="aio-cP-HdE" secondAttribute="trailing" constant="16" id="uQT-0c-vgV"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
