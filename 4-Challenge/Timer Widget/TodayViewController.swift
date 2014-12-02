@@ -33,13 +33,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   }
   
   func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
-    // Perform any setup necessary in order to update the view.
-    
-    // If an error is encountered, use NCUpdateResult.Failed
-    // If there's no update required, use NCUpdateResult.NoData
-    // If there's an update, use NCUpdateResult.NewData
-    
-    completionHandler(NCUpdateResult.NewData)
+    completionHandler(NCUpdateResult.NoData)
   }
   
   func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
@@ -50,7 +44,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     TimerManager.sharedManager.addTimer(timer)
     if let url = NSURL(string: "timers://start/\(timer.uuid)") {
       extensionContext?.openURL(url, completionHandler: { (handled) -> Void in
-        
       })
     }
   }
