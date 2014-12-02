@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   
+  let notificationSettings: UIUserNotificationSettings = {
+    let notificationTypes = UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge
+    return UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+  }()
+  
   func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
     if let host = url.host {
       if host == "start" {
@@ -27,12 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
   
+  func notificationSettingsGranted(application: UIApplication) -> Bool {
+    return application.currentUserNotificationSettings() == notificationSettings
+  }
+  
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
     
-    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
-    
-    application.applicationIconBadgeNumber = 0
+    application.registerUserNotificationSettings(notificationSettings)
     
     return true
   }
@@ -54,7 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func applicationDidBecomeActive(application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    application.applicationIconBadgeNumber = 0
+    if notificationSettingsGranted(application) {
+      application.applicationIconBadgeNumber = 0
+    }
   }
   
   func applicationWillTerminate(application: UIApplication) {
